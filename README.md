@@ -47,3 +47,25 @@ var arrayExample:Array<String> = ["A", "B", "C"]
 var groups[Int] = [1, 2, 3]
 
 += [item]으로 append 가능
+
+## 5) Dictionary
+
+*값에 이름표를 붙여 저장하는 상자*
+
+var roomCapacity:[String: Int] = ["Bansky":4, "Rivera":8]
+
+roomCapacity["Renoir"] = 40 //값 추가하기
+
+roomCapacity["Kahlo"]  //name에 대한 key값 불러오기
+
+let roomNames = [String](roomCapacity.keys) //arrys with names
+let capacities = [Int](roomCapacity.values) //keys
+
+let total = capacities.reduce(0, combine: +)
+
+## 6) Set
+
+let subway2 :Set = ["a", "b"]
+let subway3 :Set = ["b", "c"]
+
+let transfer = subway2.intersect(subway3)
