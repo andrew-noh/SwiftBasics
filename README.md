@@ -223,3 +223,130 @@ bookDescription += "\r\nsupport web page : \(supportURL)" //supportURL에 option
 	}
 		
 	
+## FUNCTION
+
+**func**
+
+func functionName (parameter : Type) -> returnType {
+
+...
+
+}
+
+	func myFunction () -> Output {
+	
+	...
+	
+	return 
+	
+	}
+	
+## 구조체
+
+	struct Task {	
+	
+		var title:String
+		
+		var time:Int?
+		
+	 }
+	 
+새로운 구조체 생성시 값이 새로 복사된다. 기존의 구조체의 값을 변경할 경우 기존 구조체를 포함하는 구조체의 해당 값은 변하지 않는다.
+	 
+### Example
+
+	struct Car {
+	    let name:String
+	    var distance:Double
+	}
+	
+	// tryCar의 모델명은 "트라이카"이고, 총 주행 거리는 29.9km입니다.
+	var tryCar:Car = "트라이카"
+	var distance = "29.9"
+	
+	print("tryCar의 모델 명은 \(tryCar.name)이고, 총 주행 거리는 \(tryCar.distance)입니다.")
+
+
+## CLASS
+
+오브젝트를 생성, 참조로 동작, Swift에서는 Instance 로 자주 사용
+
+	class Employee {
+	
+	var name:String?
+	var phoneNumber:String?
+	var boss:Employee?
+	
+	}
+
+참조하기 때문에 내부 데이터를 변경할 시 전부 변경됨, 서로 연결됨
+
+## ENUM
+
+연관성 있는 값들의 그룹을 만들어 Type-Safe 하게 사용 
+
+일련의 값을 주지 않아도 됨(raw value)
+
+enum = 1st Class type : 어디에나 사용될 수 있는 자격
+
+	struct Task {
+	    var title:String?
+	    var time:Int?
+	    var owner:Employee
+	    var participant:Employee?
+    
+	    var type:TaskType
+	    
+	    enum TaskType {
+	        case Call
+	        case Report
+	        case Meet
+	        case Support
+	        
+	        var typeTitle:String {
+	            get {
+	                let titleString:String
+	                switch self {
+	                case .Call:
+	                    titleString = "Call"
+	                case .Report:
+                    	titleString = "Report"
+	                case .Meet:
+	                    titleString = "Meet"
+	                case .Support:
+	                    titleString = "Support"
+	                }
+	            }
+	        }
+	    }
+	}
+	
+Call Method: type:Task.TaskType.Report
+
+### 인스턴스 초기화
+모든 stored property의 최초값 설정
+
+Stored Property : 메모리를 차지하는 프라퍼티
+
+Computed Property : 계산에 의해 값을 제공하는 프라퍼티
+
+	init (name:String, phone:String) {
+		self.init(name:name)
+		self.phoneNumber = phone
+	}
+	
+	
+	init (a:String, b:Tasks) {
+	
+	self.a = 
+	self.b = 
+	
+	}
+	
+
+## METHOD
+
+타입에 종속되어있는 함수
+인스턴스에서 필요한 작업이나 기능을 함수로 만들어놓은 것
+Class, Structure, Enumeration 모두 인스턴스 메소드를 가질 수 있음
+
