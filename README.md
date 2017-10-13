@@ -6,6 +6,8 @@ Swift basic tutorial notes
 
 var  //변수, mutable
 let  //상수, immutable/unchangable
+if let  //옵셔널 바인딩은 옵셔널의 값이 존재하는지를 검사한 뒤, 존재한다면 그 값을 다른 변수에 대입시켜줌. if let 또는 if var를 사용. 옵셔널의 값을 벗겨서 값이 있다면 if문 안으로 들어가고, 값이 nil이라면 그냥 통과하게 됨.
+guard let  //if let과 유사하나 if문을 통하지 않고 else로 예외처리만 함
 
 
 ## 2) Data types
