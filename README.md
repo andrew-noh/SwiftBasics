@@ -357,3 +357,145 @@ Computed Property : 계산에 의해 값을 제공하는 프라퍼티
 인스턴스에서 필요한 작업이나 기능을 함수로 만들어놓은 것
 Class, Structure, Enumeration 모두 인스턴스 메소드를 가질 수 있음
 
+## UI Table view
+
+UITableViewCell (Background view, Selected background view, Content view(Editing Control, Acessory View, Reordering control)) <= UIView
+
+## Function Type
+
+함수가 1등 시민
+
+String, Double, Int - 기본 타입
+
+Array, Dictionary, Set - 컬렉션 타입들
+
+UIView, UILabel, UITableView - Cocoa Touch 클래스 타입들
+
+	() -> Void
+	(Int, Int) -> Int - 함수 타입들  /매개변수와 리턴값
+
+Code from The Swift Programming Language
+
+	func addTwoInts(a:Int, b:Int) -> Int
+	{return a + b}
+	func multiplyTwoInts(a:Int, b:Int) -> Int
+	{return a * b}
+
+	var mathFunction: (Int, Int) -> Int = addTwoInts
+	mathFunction(2, 3)   //=5
+	mathFunction = multiplyTwoInts
+	mathFunction(2, 3)  //=6
+
+func 함수가 매개변수로도 들어갈 수 있다!
+	func finalPrice(source:Double, additional:(Double) -> Double) -> Double {
+	
+	}
+	
+## Closure
+
+1등 시민으로 사용가능한 독립적인 코드 조각 
+
+	{ (params) -> returnType in
+	statements
+	}
+
+in 이 나오면 클로져
+
+	let addVATClosure = { (source:Double) -> Double in 
+	 return source * 1.1
+	 }
+
+	 let priceX = addVATClosure(value)
+
+클로저의 축약
+
+	Lev1. let addVATClosure = { (source:Double) -> Double in
+	 return source * 1.1
+	 }
+
+	 Lev2. let addVATClosure2 = { source in
+	  return source * 1.1
+	  }
+
+	  Lev3. let addVATClosure3 = { source in
+	   source * 1.1
+	   }
+
+	   Lev.4 let addVATClosure4 = {$0 * 1.1}
+
+- 매개변수 타입과 리턴타입은 추론 가능하므로 축약 가능
+- 리턴이라는 지시어도 당연히므로 축약 가능
+- 매개변수의 이름은 내부적으로 사용하는 것이므로 축약하고 위치로 참조 가능하므로 축약한다
+
+## Curring
+
+함수를 리턴하는 함수
+
+func makeAdder (x:Int) -> (Int) -> Int {
+ func adder(a:Int) -> Int {
+  return x + a
+  }
+  return adder
+ }
+ 
+ let add5 = makeAdder(5)
+ 
+ 함수내부의 변수를 조정할 수 있는 함수
+ 
+ ## Map
+ 
+ 배열의 항목에 함수를 적용하기
+ 
+ \[a, b, c, d, e\].map{f(x)}  => \[f(a), f(b), f(c), f(d), f(e)\]
+
+	 let vatMapPrices = transactions_array.map({ transaction -> Double in
+	  return transaction * 1.1
+	  })
+	  
+## Filter
+
+조건문을 대체 가능
+
+\[a, b, c, d, e\].filter{x>100} => 100보다 큰 항목들로 이루어진 배열 리턴
+
+## Sort
+
+배열을 정렬
+
+\[a, b, c, d, e\].sort{$0 > $1}
+
+	func ascendantSort (sort1:Double, sort2:Double) -> Bool {
+	 return sort1 > sort2
+	}
+
+	let sortedPrices = vatPrices.sort(accendantSort)
+	let sortedPrices2 = vatPrices.sort({ $0 > $1 })
+	let sortedPrices3 = vatPrices.sort(>)
+
+## Reduce
+
+하나의 값으로 수렴
+
+\[a, b, c, d, e\].reduce(초기값, combine:+) => 배열의 모든 값이 합한 값
+
+	func priceSum (base:Double, adder:Double) -> Double {
+	 return base + adder
+	}
+
+	var sum:Double = 0.0
+	for price in vatPrices {
+	 sum = priceSum(sum, adder:price)
+	}
+	
+Reduce
+
+	var sum2:Double = 0.0
+	let sumReduce = vatPrices.reduce(sum2, combine: priceSum)
+	let sumReduce2 - vatPrices.reduce(0.0, combine: { base, adder in
+	 base + adder
+	 })
+
+	var sumReduce3 = vatPrices.reduce(0.0, combine: +)
+
+문자열도 가능
+	let pricesInString = vatPrices.reduce("", combine: { $0 + "\($1)\n"})
