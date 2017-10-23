@@ -499,3 +499,26 @@ Reduce
 
 문자열도 가능
 	let pricesInString = vatPrices.reduce("", combine: { $0 + "\($1)\n"})
+	
+	
+## Class, Method, Function
+
+Class - no round brackets, Function - round brackets, put within a class, 
+	class Person {
+	
+	 init(){
+	     print("New person initialized")
+	 }
+	
+	func SayHello(){
+	
+        print("Hello")
+	
+    }
+	}
+	
+	var person_1 = Person()
+
+	person_1.SayHello()
+	
+
