@@ -43,6 +43,15 @@ let tupleExample:(a:INT, b:Int, c:Int) = (1, 2, 3)
 
 (a:INT, b:Int, c:Int) // Typealias
 
+	typealias Time = (h:Int, m:Int, s:Int)
+	typealias Duration = (start:Time, end:Time)
+	
+	let today:Duration = ((9, 10, 23), (17, 8, 21))
+	print(\(today.start.h))
+
+Tuple : Int, String, Double이 섞여서 들어갈 수 있다. 순서는 정해져있지 않음
+
+Array : 순서가 정해져있다. 동일한 타입의 인스턴스만 들어갈 수 있다.
 
 ## 4) Array
 
@@ -50,8 +59,14 @@ Array<Type> 또는 [Type]
 Array의 let과 var
 Array 안에는 동일한 타입의 인스턴스가 들어가야 함
 
-var arrayExample:Array<String> = ["A", "B", "C"]
-var groups[Int] = [1, 2, 3]
+	var arrayExample:Array<String> = ["A", "B", "C"]
+	var groups:[Int] = [1, 2, 3]
+
+정의하는 법:
+
+	var example:[Int] = [10, 9, 2]
+	
+	var example:Array<Int> = [9, 8, 7]
 
 += [item]으로 append 가능
 
@@ -65,12 +80,15 @@ roomCapacity["Renoir"] = 40 //값 추가하기
 
 roomCapacity["Kahlo"]  //name에 대한 key값 불러오기
 
-	let roomNames = [String](roomCapacity.keys) //arrys with names
+	let roomNames = [String](roomCapacity.keys) //arrys with names 새로운 어레이
+	let roomNames = roomCapacity.keys //새로운 튜플
 	let capacities = [Int](roomCapacity.values) //keys
 
 let total = capacities.reduce(0, combine: +)
 
 ## 6) Set
+
+순서를 가지고 있지 않은 컬렉션
 
 	let subway2 :Set = ["a", "b"]
 	let subway3 :Set = ["b", "c"]
@@ -387,9 +405,8 @@ Code from The Swift Programming Language
 	mathFunction(2, 3)  //=6
 
 func 함수가 매개변수로도 들어갈 수 있다!
-	func finalPrice(source:Double, additional:(Double) -> Double) -> Double {
-	
-	}
+
+	func finalPrice(source:Double, additional:(Double) -> Double) -> Double { }
 	
 ## Closure
 
@@ -442,7 +459,7 @@ func makeAdder (x:Int) -> (Int) -> Int {
  
  함수내부의 변수를 조정할 수 있는 함수
  
- ## Map
+## Map
  
  배열의 항목에 함수를 적용하기
  
