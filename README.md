@@ -539,3 +539,8 @@ Class - no round brackets, Function - round brackets, put within a class,
 	person_1.SayHello()
 	
 
+## iOS 구조
+
+NSObject(Cocoa Touch) -> UIResponder -> (UIApplication(앱의 수명을 관리), UIView(화면에 뿌려지는 모든 것), UIViewcontroller(사용자 인터렉션 관리, touch)) -> other
+
+Frame vs Bounds: both are RECT, frame=슈퍼뷰를 기준으로 한 프레임, bounds=자신의 좌표계를 기준으로 한 프레임(이미지의 표시할 부분 선택 시 보여지는 부분 지정할 때)
